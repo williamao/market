@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人主页</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/search.css">
+</head>
+<body>
+	<header  th:include="menu/header:: header"></header>
+	<div  class="container w" style="color: #333;">
+       <div class="row">
+			<div class="col-md-3 col-sm-4">
+				<div style="font-size: 18px; margin: 30px 50px 50px 50px;">
+				    <dl>  
+					  <dt style="line-height: 40px;" > <a href="/home">个人中心</a> </dt> 
+					   <dt style="line-height: 40px;"> <a  th:href="@{'/myFa/'+${session.user.id}}" >我的发布</a> </dt>  
+					    <dt style="line-height: 40px;"> <a  href="/myCol">我的收藏</a> </dt> 
+					  <dt style="line-height: 40px;"> <a  href="/about">关于平台</a> </dt>  
+					</dl>
+				</div>
+			</div>
+			<div class="col-md-9 col-sm-8">
+			   <form class="form-horizontal" action="u/home" method="post" id="form">
+					<h2 class="content-child-h2"><span id="detail_name">我的信息</span></h2>
+					
+					<input type="hidden" name="id"  th:value="${session.user.id}">
+					
+                    <dl class="dl-horizontal bedl bedl-underline">
+                        <dt>用户名</dt>
+                        <dd th:text="${session.user.username}">name</dd>
+
+
+                        <dt>手机号</dt>
+                        <dd ><input type="text" id="phone" name="phone"
+											th:value="${session.user.phone}">
+                        </dd>
+
+                        <dt>QQ</dt>
+                        <dd><input type="qq"
+											id="qq" name="qq"  th:value="${session.user.qq}"></dd>
+						<dt>密码</dt>
+                        <dd><input type="password"
+											id="password" name="password"  th:value="${session.user.password}">
+					</dd>
+					
+						<dt  >交易地址</dt>
+					     	<dd th:if="${session.place}">
+						   <input type="text" 	id="placeAddress" name="placeAddress"  th:value="${session.place.placeAddress}">
+					       </dd>
+						  <dd th:unless="${session.place}">
+						    <input type="text" class="form-control"  id="placeAddress"  name="placeAddress"  >
+						     </dd>
+						<dt></dt>
+						<dd class="bedl-btn">
+								<button type="submit" class="btn btn-default">修改</button>
+						</dd>
+
+                    </dl>
+                    </form>
+			</div>
+		</div>
+</div>
+<footer  th:include="menu/footer:: footer">	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/src/formValidation.js"></script>
+	<script type="text/javascript" src="js/src/bootstrap.js"></script>
+	<script type="text/javascript" src="js/src/zh_CN.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#form').formValidation({
+				message : '此值无效',
+				fields : {
+					username : {
+						message : '用户名无效',
+						validators : {
+							notEmpty : {
+								message : '用户名不能为空'
+							},
+							stringLength : {
+								min : 6,
+								max : 30,
+								message : '用户名长度6--30个字符'
+							},
+							regexp : {
+								regexp : /^[a-zA-Z0-9_\.]+$/,
+								message : '用户名只能由字母，数字，点号和下划线组成'
+							}
+						}
+					},
+					password : {
+						validators : {
+							notEmpty : {
+								message : '密码不能为空'
+							},
+							stringLength : {
+								min : 6,
+								max : 18,
+								message : '请输入6--18位密码'
+							},
+						}
+					},
+					confirmPassword : {
+						validators : {
+							notEmpty : {
+								message : '密码不能为空'
+							},
+							identical : {
+								field : 'password',
+								message : '两次密码不相同'
+							},
+							different : {
+								field : 'username',
+								message : '密码不能与用户名相同'
+							}
+						}
+					},
+					qq: {
+		                message: 'QQ号无效',
+		                validators: {
+		                    notEmpty: {
+		                        message: 'QQ不能为空'
+		                    },
+		                    stringLength: {
+		                        min:4,
+		                        max: 11,
+		                        message: 'QQ格式不正确'
+		                    },
+		                    regexp: {
+		                        regexp: /^[1-9][0-9]{4,}$/,
+		                        message: 'QQ不符合规则，请填写正确QQ'
+		                    }
+		                }
+		            },  
+					email : {
+						message : '邮箱地址无效',
+						validators : {
+							notEmpty : {
+								message : '邮箱地址不能为空'
+							},
+							stringLength : {
+								min : 3,
+								max : 30,
+								message : '邮箱格式不正确'
+							},
+							regexp : {
+								regexp : /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/,
+								message : '邮箱不符合规则，请填写正确邮箱'
+							}
+						}
+					},
+					phone : {
+						message : '手机格式无效',
+						validators : {
+							notEmpty : {
+								message : '手机号码不能为空'
+							},
+							stringLength : {
+								min : 11,
+								max : 11,
+								message : '请输入11位手机号码'
+							},
+							regexp : {
+								regexp : /^1[3|5|7|8][0-9]\d{8}$/,
+								message : '手机号不符合，请填写正确手机号'
+							}
+						}
+					}
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>

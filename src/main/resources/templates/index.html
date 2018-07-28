@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head >
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>主 页</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/search.css">
+<style type="text/css">
+body {
+   background-color: #f6f6f6;
+}
+.itemt .t{
+    width:250px;
+   overflow: hidden;
+   text-overflow: ellipsis; 
+   white-space: nowrap;
+ }
+</style>
+<body>
+<header  th:include="menu/header:: header"></header>
+<div  th:include="menu/index_top:: index_top"></div>
+<div class="container w">
+
+ <h2>F1 图书教材</h2>
+
+       <div class="row" >
+         <div th:each="tushu : ${findtushuList}">
+         
+           <div class="col-md-4 itemt" >
+
+	           <h4><div  class="t"     th:title="${tushu.name}"   th:text="${tushu.name}">name</div></h4>
+		        <a th:href="@{'/show/'+${tushu.id}}"  th:title="${tushu.name}">
+                       <img th:src="@{'http://www.auceo.cn'+${tushu.mainImage}}" th:title="${tushu.name}"></a>
+	        </div>
+		 </div>
+	 
+        </div>
+       <h2>F2 手机</h2>
+
+       <div class="row" >
+         <div th:each="shouji : ${findshoujiList}">
+         
+           <div class="col-md-4 itemt" >
+
+	           <h4><div  class="t"     th:title="${shouji.name}"   th:text="${shouji.name}">name</div></h4>
+		        <a th:href="@{'/show/'+${shouji.id}}"  th:title="${shouji.name}">
+                       <img th:src="@{'http://www.auceo.cn'+${shouji.mainImage}}" th:title="${shouji.name}"></a>
+	        </div>
+		 </div>
+	 
+        </div>
+	  <h2>F3 数码配件</h2>
+
+       <div class="row" >
+         <div th:each="shuma : ${findshumaList}">
+         
+           <div class="col-md-4 itemt" >
+
+	           <h4><div  class="t"     th:title="${shuma.name}"   th:text="${shuma.name}">name</div></h4>
+		        <a th:href="@{'/show/'+${shuma.id}}"  th:title="${shuma.name}">
+                       <img th:src="@{'http://www.auceo.cn'+${shuma.mainImage}}" th:title="${shuma.name}"></a>
+	        </div>
+		 </div>
+	 
+        </div>
+		  <h2>F4 运动健身</h2>
+
+       <div class="row" >
+         <div th:each="yundong : ${findyundongList}">
+         
+           <div class="col-md-4 itemt" >
+
+	           <h4><div  class="t"     th:title="${yundong.name}"   th:text="${yundong.name}">name</div></h4>
+		        <a th:href="@{'/show/'+${yundong.id}}"  th:title="${yundong.name}">
+                       <img th:src="@{'http://www.auceo.cn'+${yundong.mainImage}}" th:title="${yundong.name}"></a>
+	        </div>
+		 </div>
+	 
+        </div>
+		 
+		  <h2>F5 衣物伞帽</h2>
+
+       <div class="row" >
+         <div th:each="yiwu : ${findyiwuList}">
+         
+           <div class="col-md-4 itemt" >
+
+	           <h4><div  class="t"     th:title="${yiwu.name}"   th:text="${yiwu.name}">name</div></h4>
+		        <a th:href="@{'/show/'+${yiwu.id}}"  th:title="${yiwu.name}">
+                       <img th:src="@{'http://www.auceo.cn'+${yiwu.mainImage}}" th:title="${yiwu.name}"></a>
+	        </div>
+		 </div>
+	 
+        </div>
+		 
+		<h2>F6 校园代步</h2>
+
+       <div class="row" >
+         <div th:each="xiaoyuan : ${findxiaoyuanList}">
+         
+           <div class="col-md-4 itemt" >
+
+	           <h4><div  class="t"     th:title="${xiaoyuan.name}"   th:text="${xiaoyuan.name}">name</div></h4>
+		        <a th:href="@{'/show/'+${xiaoyuan.id}}"  th:title="${xiaoyuan.name}">
+                       <img th:src="@{'http://www.auceo.cn'+${xiaoyuan.mainImage}}" th:title="${xiaoyuan.name}"></a>
+	        </div>
+		 </div>
+	 
+        </div>
+        </div>
+		
+
+
+<footer  th:include="menu/footer:: footer">	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

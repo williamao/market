@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>用户登录</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+	<link rel="stylesheet" type="text/css" href="css/form.css">
+	<link rel="stylesheet" type="text/css" href="css/search.css">
+	<script type="text/javascript">
+function timedMsg()
+{
+var t=setTimeout("document.getElementById('hide').style.display='none'",300).hideel
+}
+</script>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/">欢迎</a>
+		</div>
+		<div>
+			<p class="navbar-text navbar-left">校园二手交易平台</p>
+
+			<div>
+				<ul class="nav navbar-nav navbar-right">
+	
+					<li  th:if="${session.user}"> 
+					      <a  href="/home" ><span  th:text="${session.user.username}" class="glyphicon glyphicon-user">
+					             </span ></a></li>
+				  <li  th:if="${session.user}"> 
+					     <a  href="/SellRegister" ><span class="glyphicon glyphicon-user">
+					             </span >发布商品</a></li>
+					 <li th:if="${session.user}">
+					       <a href="/logout"><span   class="glyphicon glyphicon-log-in">
+					       				</span> 注销</a></li>
+			
+					<li th:unless="${session.user}">
+					        <a href="/registerFrom"><span  class="glyphicon glyphicon-user">
+					        				</span> 注册</a></li>
+					 <li th:unless="${session.user}">
+					        <a href="/login"><span  class="glyphicon glyphicon-user">
+					        </span> 发布商品</a></li>
+					<li  th:unless="${session.user}">
+					<a href="/login"><span  class="glyphicon glyphicon-log-in">
+										</span> 登录</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</nav>
+    <div class="htmleaf-container">
+		<div class="demo form-bg" style="padding: 20px 0;">
+		        <div class="container">
+		            <div class="row">
+		                <div class="col-md-offset-3 col-md-6">
+		                     <form class="form-horizontal" action="login" method="post" id="form">
+		                        <span class="heading">用户登录</span>
+		                        <div class="form-group">
+		                            <input type="text" class="form-control" id="username" 
+												placeholder="用户名" name="username"  onClick = "timedMsg()">
+										<i class="fa fa-user"></i>
+		                        </div>
+		                        <div class="form-group help">
+		                            <input type="password" class="form-control" id="password" placeholder="密　码" name="password">
+		                             <i class="fa fa-lock"></i>
+		                            <a href="/phonePassword" class="fa fa-question-circle">找回密码</a>
+		                        </div>
+			     	<div   th:if="${message}">
+				         	<span id='hide' style="padding-top: 5px">
+                             <span  style="color: #a94442" th:text="${message}"></span>
+                          </span>
+			         </div>
+		                        <div class="form-group">
+		                            <div class="main-checkbox">
+		                                <input type="checkbox" value="None" id="checkbox1" name="check"/>
+		                                <label for="checkbox1"></label>
+		                            </div>
+		                            <span class="text">记住我</span>
+		                            <button type="submit" class="btn btn-default">登录</button>
+		                            <a href="/registerFrom" class="btn btn-default btn-xs"
+		                             role="button">注册</a>
+		                        </div>
+		                    </form>
+		                </div>
+		            </div>
+		        </div>
+		</div>
+	</div>
+	
+<footer  th:include="menu/footer:: footer">	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	 <script type="text/javascript" src="js/src/formValidation.js"></script>
+    <script type="text/javascript" src="js/src/bootstrap.js"></script>
+    <script type="text/javascript" src="js/src/zh_CN.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#form').formValidation({
+		        message: '此值无效',
+		        fields: {
+		            username: {
+		                message: '用户名无效',
+		                validators: {
+		                    notEmpty: {
+		                        message: '用户名不能为空'
+		                    },
+		                }
+		            },
+		            password: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '密码不能为空'
+		                    },
+		                    stringLength: {
+		                        min:6,
+		                        max: 18,
+		                        message: '请输入6--18位密码'
+		                    }
+		                }
+		            }
+		        }
+		    });
+		});
+	</script>
+</body>
+</html>

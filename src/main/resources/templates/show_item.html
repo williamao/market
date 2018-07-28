@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物品搜索页</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+<link rel="stylesheet" type="text/css" href="css/form.css">
+<link rel="stylesheet" type="text/css" href="css/search.css">
+<style>
+body{
+background: #f8f8f8;
+}
+ .t{
+    width:250px;
+   overflow: hidden;
+   text-overflow: ellipsis; 
+   white-space: nowrap;
+ }
+
+</style>
+</head>
+<body>
+<header  th:include="menu/header:: header"></header>
+<div  class="container w" style="color: #333;">
+       <div class="row">
+           <div   th:if="${message}">
+                <span  style="color: #a94442" th:text="${message}">没有查找到相关物品</span>
+	       </div>
+		<div  th:unless="${message}">
+		<div  th:each="product : ${products}">
+            <div class="col-md-4 itemt">
+	               <h4> 
+	                     <div class="t"   th:title="${product.name}"   th:text="${product.name}">name</div>
+	               </h4>
+		          <a th:href="@{'/show/'+${product.id}}" th:title="${product.name}">
+                       <img th:src="@{'http://www.auceo.cn'+${product.mainImage}}"  th:title="${product.name}"></a>
+	                <div class="t" th:title="${product.detail}"  th:text="${product.detail}"></div>
+	          </div>      
+		  </div>     
+		         
+        </div>
+  </div>
+</div>
+<footer  th:include="menu/footer:: footer">	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

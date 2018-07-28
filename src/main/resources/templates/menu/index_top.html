@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head >
+</head>
+<body>
+ <div th:fragment="index_top">
+		<div class="container contain_w">
+	   <div class="row">
+		<div class="col-md-4 cate-wrap " style="height: 380px;">
+			<ul class="cate-list" >
+				<li class="cate-item">
+					<a class="cate-link" href="search?name=手机">手机</a>
+		        </li>
+				<li class="cate-item">
+					<a class="cate-link" href="search?name=电脑">电脑</a>
+		        </li>
+				<li class="cate-item">
+					<a class="cate-link" href="search?name=数码配件">数码配件</a>
+		        </li>
+				<li class="cate-item">
+					<a class="cate-link" href="search?name=运动健身">运动健身</a>
+		        </li>
+				<li class="cate-item">
+					<a class="cate-link" href="search?name=衣物伞帽">衣物伞帽</a>
+		        </li>
+				<li class="cate-item">
+					<a class="cate-link" href="search?name=图书教材">图书教材</a>
+		        </li>
+				<li class="cate-item">
+					<a class="cate-link" href="search?name=生活娱乐">生活娱乐</a>
+		        </li>
+				<li class="cate-item">
+					<a class="cate-link" href="search?name=校园代步">校园代步</a>
+		        </li>
+				<li class="cate-item">
+					<a class="cate-link" href="search?name=租赁">租赁</a>
+		        </li>
+				<li class="cate-item">
+					<a class="cate-link" href="search?name=其他">其他</a>
+		        </li>
+			</ul>
+		</div>
+		<div id="whCar" class="carousel slide col-md-8" style="overflow: hidden; width: 830px; height: 380px;">
+			<ol class="carousel-indicators">
+				<li data-target="#whCar" data-slide-to="0" class="active"></li>
+				<li data-target="#whCar" data-slide-to="1"></li>
+				<li data-target="#whCar" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner" style="text-align:center">
+				<div class="item active">
+					<img style="width: 830px; height: 380px;"
+						src="http://www.auceo.cn/static/first.png"
+						alt="主图片">
+				</div>
+				<div class="item">
+					<img style="width: 830px; height: 380px;"
+						src="http://www.auceo.cn/static/erahau.jpg"
+						alt="图片2">
+					<div class="carousel-caption">图片2</div>
+				</div>
+				<div class="item">
+					<img style="width: 830px; height: 380px;"
+						src="http://www.auceo.cn/static/s.jpg"
+						alt="图片3">
+					<div class="carousel-caption">图片3</div>
+				</div>
+			</div>
+			<a class="left carousel-control" href="#whCar" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a> <a class="right carousel-control" href="#whCar" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+
+		</div>
+	  </div>
+	</div>
+</body>
+</html>

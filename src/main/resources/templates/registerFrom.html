@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>用户登录</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+	<link rel="stylesheet" type="text/css" href="css/form.css">
+	<link rel="stylesheet" type="text/css" href="css/search.css">
+</head>
+<body >
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/">欢迎</a>
+		</div>
+		<div>
+			<p class="navbar-text navbar-left">校园二手交易平台</p>
+
+			<div>
+				<ul class="nav navbar-nav navbar-right">
+	
+					<li  th:if="${session.user}"> 
+					      <a  href="/home" ><span  th:text="${session.user.username}" class="glyphicon glyphicon-user">
+					             </span ></a></li>
+				  <li  th:if="${session.user}"> 
+					     <a  href="/SellRegister" ><span class="glyphicon glyphicon-user">
+					             </span >发布商品</a></li>
+					 <li th:if="${session.user}">
+					       <a href="/logout"><span   class="glyphicon glyphicon-log-in">
+					       				</span> 注销</a></li>
+			
+					<li th:unless="${session.user}">
+					        <a href="/registerFrom"><span  class="glyphicon glyphicon-user">
+					        				</span> 注册</a></li>
+					 <li th:unless="${session.user}">
+					        <a href="/login"><span  class="glyphicon glyphicon-user">
+					        </span> 发布商品</a></li>
+					<li  th:unless="${session.user}">
+					<a href="/login"><span  class="glyphicon glyphicon-log-in">
+										</span> 登录</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</nav>
+	<div class="htmleaf-container">
+		<div class="demo form-bg" style="padding: 20px 0;">
+		        <div class="container">
+		            <div class="row">
+		                <div class="col-md-offset-3 col-md-6">
+		                    <form class="form-horizontal" action="register" method="post" id="form">
+		                        <span class="heading">用户注册</span>
+		                        <div class="form-group">
+		                            <input type="text" class="form-control" id="username" 
+		                            placeholder="用户名" name="username">
+		                            <i class="fa fa-user"></i>
+		                        </div>
+		                        <div class="form-group">
+		                            <input type="password" class="form-control" 
+		                            id="password" placeholder="密　码" name="password">
+		                        </div>
+		                        <div class="form-group">
+		                            <input type="password" class="form-control" 
+		                            id="confirmPassword" placeholder="确认密码" name="confirmPassword">
+		                        </div>
+		                        <div class="form-group">
+		                            <input type="text" class="form-control" 
+		                            id="phone" placeholder="手机号  用于交易时联系" name="phone">
+		                        </div>
+		                        <div class="form-group">
+		                            <input type="qq" class="form-control" 
+		                            id="qq" placeholder="QQ  用于交易时联系" name="qq">
+		                        </div>
+		                        <div class="form-group">
+		                            <input type="text" class="form-control" 
+		                            id="question" placeholder="找回密码问题" name="question">
+		                        </div>
+		                        <div class="form-group">
+		                            <input type="text" class="form-control" 
+		                            id="answer" placeholder="找回密码答案" name="answer">
+		                        </div>
+		                        
+		                        <div class="form-group">
+
+		                            <button type="submit" class="btn btn-default">注 册</button>
+		                        </div>
+		                    </form>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+	</div>
+	<footer  th:include="menu/footer:: footer">	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	 <script type="text/javascript" src="js/src/formValidation.js"></script>
+    <script type="text/javascript" src="js/src/bootstrap.js"></script>
+    <script type="text/javascript" src="js/src/zh_CN.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#form').formValidation({
+		        message: '此值无效',
+		        fields: {
+		            username: {
+		                message: '用户名无效',
+		                validators: {
+		                    notEmpty: {
+		                        message: '用户名不能为空'
+		                    },
+		                    stringLength: {
+		                        min: 6,
+		                        max: 30,
+		                        message: '用户名长度6--30个字符'
+		                    },
+		                    regexp: {
+		                        regexp: /^[a-zA-Z0-9_\.]+$/,
+		                        message: '用户名只能由字母，数字，点号和下划线组成'
+		                    }
+		                }
+		            },
+		            password: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '密码不能为空'
+		                    },
+		                    stringLength: {
+		                        min:6,
+		                        max: 18,
+		                        message: '请输入6--18位密码'
+		                    },
+		                }
+		            },
+		            confirmPassword: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '密码不能为空'
+		                    },
+		                    identical: {
+		                        field: 'password',
+		                        message: '两次密码不相同'
+		                    },
+		                    different: {
+		                        field: 'username',
+		                        message: '密码不能与用户名相同'
+		                    }
+		                }
+		            },
+		            qq: {
+		                message: 'QQ号无效',
+		                validators: {
+		                    notEmpty: {
+		                        message: 'QQ不能为空'
+		                    },
+		                    stringLength: {
+		                        min:4,
+		                        max: 11,
+		                        message: 'QQ格式不正确'
+		                    },
+		                    regexp: {
+		                        regexp: /^[1-9][0-9]{4,}$/,
+		                        message: 'QQ不符合规则，请填写正确QQ'
+		                    }
+		                }
+		            },  
+		            
+		           email: {
+		                message: '邮箱地址无效',
+		                validators: {
+		                    notEmpty: {
+		                        message: '邮箱地址不能为空'
+		                    },
+		                    stringLength: {
+		                        min:3,
+		                        max: 30,
+		                        message: 'qq格式不正确'
+		                    },
+		                    regexp: {
+		                        regexp: /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/,
+		                        message: '邮箱不符合规则，请填写正确邮箱'
+		                    }
+		                }
+		            },  
+		            phone: {
+		                message: '手机格式无效',
+		                validators: {
+		                    notEmpty: {
+		                        message: '手机号码不能为空'
+		                    },
+		                    stringLength: {
+		                        min:11,
+		                        max: 11,
+		                        message: '请输入11位手机号码'
+		                    },
+		                    regexp: {
+		                        regexp:  /^1[3|5|7|8][0-9]\d{8}$/,
+		                        message: '手机号不符合，请填写正确手机号'
+		                    }
+		                }
+		            }  
+		        }
+		    });
+		});
+	</script>
+</body>
+</html>

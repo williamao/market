@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人主页</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/search.css">
+</head>
+<body>
+	<header  th:include="menu/header:: header"></header>
+	<div  class="container w" style="color: #333;">
+       <div class="row">
+			<div class="col-md-3 col-sm-4">
+				<div style="font-size: 18px; margin: 30px 50px 50px 50px;">
+				    <dl th:if="${session.user}">  
+					  <dt style="line-height: 40px;" > <a href="/home">个人中心</a> </dt> 
+					   <dt style="line-height: 40px;"> <a  th:href="@{'/myFa/'+${session.user.id}}" >我的发布</a> </dt>  
+					     <dt style="line-height: 40px;"> <a  th:href="@{'/myCol/'+${session.user.id}}" >我的收藏</a> </dt> 
+					    <dt style="line-height: 40px;"> <a  href="/about">关于平台</a> </dt>  
+					</dl>
+					<dl  th:unless="${session.user}">  
+					  <dt style="line-height: 40px;" > <a href="/login">个人中心</a> </dt> 
+					   <dt style="line-height: 40px;"> <a  href="/login" >我的发布</a> </dt>  
+					    <dt style="line-height: 40px;"> <a  href="/login">我的收藏</a> </dt> 
+					    <dt style="line-height: 40px;"> <a  href="/about">关于平台</a> </dt>  
+					</dl>
+				</div>
+			</div>
+			<div class="col-md-9 col-sm-8">
+					<h2 class="content-child-h2">
+						<span id="detail_name">我的信息</span>
+					</h2>
+
+										
+
+                    <dl class="dl-horizontal bedl bedl-underline">
+                        <dt>用户名</dt>
+                        <dd th:text="${session.user.username}">name</dd>
+
+
+                        <dt>手机号</dt>
+                        <dd th:text="${session.user.phone}">手机号</dd>
+
+                        <dt>QQ</dt>
+                        <dd th:text="${session.user.qq}">QQ</dd>
+
+					<div th:if="${session.place}">
+						<dt >交易地址</dt>
+                        <dd th:text="${session.place.placeAddress}"></dd>
+                     </div>
+                     <div th:unless="${session.place}">
+                            <dt >交易地址</dt>
+                           <dd ></dd>
+                        </div>
+                        
+						<dt></dt>
+						<dd class="bedl-btn">
+							<a href="/editHome"><div class="btn btn-primary">
+							      <span class="glyphicon glyphicon-edit"></span> 编辑
+							</div>
+							</a>
+						</dd>
+
+                    </dl>
+			</div>
+		</div>
+		</div>
+<footer  th:include="menu/footer:: footer">	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/src/bootstrap.js"></script>
+</body>
+</html>

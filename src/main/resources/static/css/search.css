@@ -1,0 +1,160 @@
+@CHARSET "UTF-8";
+.search-header-w {
+	width: 1080px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+
+.search-header .search-form {
+	padding: 5px 0 30px 250px;
+	border-bottom: 3px ;
+}
+
+.search-header .search-form .search-input {
+	width: 550px;
+	padding: 10px;
+	border: 2px solid #f6f6f6;;
+	font-size: 15px;
+	outline: none;
+}
+
+.search-header .search-form .search-btn {
+	position: absolute;
+	width: 80px;
+	height: 42px;
+	border: none;
+	background-color: #333;
+	font-size: 17px;
+	font-weight: 700;
+	color: #fff;
+	outline: none;
+	cursor: pointer;
+}
+
+
+footer {
+    width: 100%;
+}
+.fo{
+height: 65px;
+bottom: 2px;
+margin: 0 auto;
+position: relative;
+overflow: hidden;
+width: 1080px;
+overflow: hidden;
+}
+
+.copyright{text-align:center; padding:10px 0px;color:#000; }
+.copyright a{text-decoration:underline; color:#000; }
+.contain_w {
+    width: 1080px;
+    margin: 0 auto;
+    position: relative;
+}
+.cate-wrap {
+    padding: 15px 0;
+    width: 200px;
+    margin-right: 10px;
+    background: #eee;
+}
+.cate-wrap .cate-item {
+    overflow: hidden;
+    padding-left: 12px;
+    line-height: 35px;
+    font-size: 16px;
+}
+.cate-wrap .cate-item .cate-link {
+    margin-right: 4px;
+    color: #333;
+}
+.cate-wrap .cate-item .cate-link-item {
+     font-size: 12px;
+    margin-right: 4px;
+    color: #666;
+}
+.w{
+padding-left: 55px;
+}
+.itemt {
+   
+	width: 250px;
+	height: 280px;
+	margin: 17px 20px 17px 0;
+}
+.t{
+overflow: hidden;
+padding-left: 20px;
+color: #5e5e5e;
+}
+.itemt img{
+width: 250px; 
+height:180px;
+}
+
+
+.content-child-h2 {
+    border-bottom: 1px solid #ccc;
+    border-top: 1px ;
+    margin: -10px 0 20px 0;
+    padding: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bedl dd {
+    margin-left: 120px;
+    max-width: 520px;
+    text-overflow: ellipsis;
+}
+.dl-horizontal dt {
+    float: left;
+    width: 160px;
+    clear: left;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.bedl-underline dd {
+    border-bottom: 1px solid #ccc;
+}
+.bedl dt {
+    float: left;
+    width: 100px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.bedl dt, .bedl dd {
+    line-height: 30px;
+    margin-bottom: 5px;
+}
+
+#detail_price {
+    font-size: 45px;
+    color: #f92040;
+}
+#detail_original_price {
+    margin-left: 5px;
+    font-size: 18px;
+    color: #888;
+    text-decoration: line-through;
+}
+.content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+.content-h2 {
+    background: #f7f7f7;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid #eee;
+    margin: -20px -20px 20px -20px;
+    padding: 20px;
+    font-size: 18px;
+}

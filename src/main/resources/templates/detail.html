@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物品详情页</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/htmleaf-demo.css">
+<link rel="stylesheet" type="text/css" href="/css/form.css">
+<link rel="stylesheet" type="text/css" href="/css/search.css">
+<style>
+body{
+background: #f8f8f8;
+}
+
+</style>
+</head>
+<body>
+<header  th:include="menu/header:: header"></header>
+<div  class="container w" style="color: #333;">
+
+    <div class="row">
+			<div class="col-md-3 col-sm-4">
+				<div id="detail_image">
+			<img class="img-thumbnail"  th:src="@{'http://www.auceo.cn'+${product.mainImage}}"   th:title="${product.name}"></div>
+			</div>
+			<div class="col-md-9 col-sm-8">
+					<h2 class="content-child-h2">
+						<span id="detail_name" th:title="${product.name}"   th:text="${product.name}">name</span>
+					</h2>
+                    <dl class="dl-horizontal bedl bedl-underline">
+                        <dt>卖家</dt>
+                        <dd th:text="${sellUser.username}">小明</dd>
+
+
+                        <dt>成色</dt>
+                        <dd th:text="${product.subtitle}">7成新</dd>
+
+                        <dt>价格</dt>
+                        <dd>
+						    <strong id="detail_price"  th:text="${product.price}">2</strong>
+                            <span id="detail_original_price" th:text="${product.oldPrice}">5</span>
+                        </dd>
+
+					<div th:if="${sellPlace}">
+						<dt >交易地址</dt>
+                        <dd th:text="${sellPlace.placeAddress}"></dd>
+                     </div>
+                     <div th:unless="${sellPlace}">
+                            <dt >交易地址</dt>
+                           <dd ></dd>
+                        </div>
+
+
+						<dt></dt>
+					<dd class="bedl-btn" th:if="${session.user}">
+						<a th:href="@{'/showSellPQ/'+${product.id}}"
+							th:if="${product.status}==1">
+							<div class="btn btn-primary">
+								<span class="glyphicon glyphicon-shopping-cart"></span>联系卖家
+							</div>
+						</a>
+						<div class="btn btn-primary" th:if="${product.status}==0">
+							<span class="glyphicon glyphicon-shopping-cart"></span>已卖出
+						</div>
+						<a th:href="@{'/editDetail/'+${product.id}}"
+							th:if="${product.status}==1">
+							<div class="btn btn-primary"
+								th:if="${session.user.id} == ${sellUser.id}">
+								<span class="glyphicon glyphicon-edit"></span> 更改商品状态（已卖出）
+							</div>
+						</a> <a th:href="@{'/itemCollect/'+${product.id}}">
+							<div class="btn btn-primary">
+								<span class="glyphicon glyphicon-plus-sign"></span> 收藏
+							</div>
+							
+						</a> 
+						<a th:href="@{'/delete/'+${product.id}}"
+							th:if="${session.user.username}=='admin'  ">
+							<div class="btn btn-primary">
+								<span class="glyphicon"></span>强制下架且删除商品
+							</div>
+						</a>
+
+					</dd>
+					<dd class="bedl-btn" th:unless="${session.user}">
+							<a href="/login">	
+							       <div class="btn btn-primary" >
+						                  <span class="glyphicon glyphicon-shopping-cart"></span> 联系卖家
+						          </div>
+							</a>
+							 <div class="btn btn-primary">
+							    <a href="/login">	
+								    <span class="glyphicon glyphicon-plus-sign"></span> 收藏</div>
+								 	</a> 
+						</dd>
+                    </dl>
+			</div>
+		</div>
+		<div class="content container" style="margin-top: 20px;" id="goods-intro">
+		<h2 class="content-h2">商品描述</h2>
+		<div id="detail_intro" th:text="${product.detail}">detail</div>
+	</div>
+	
+<footer  th:include="menu/footer:: footer">	</footer>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script th:inline="javascript">
+/*<![CDATA[*/
+
+var user = {};
+
+/*]]>*/
+</script>
+</body>
+</html>

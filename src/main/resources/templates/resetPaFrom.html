@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找回密码</title>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+	<link rel="stylesheet" type="text/css" href="css/form.css">
+</script>
+</head>
+<body>
+    <div class="htmleaf-container">
+		<header class="htmleaf-header">
+			 <h1>用户密码找回</h1>
+		</header>
+		<div class="demo form-bg" style="padding: 20px 0;">
+		        <div class="container">
+		            <div class="row">
+		                <div class="col-md-offset-3 col-md-6">
+		                     <form class="form-horizontal" action="findPas" method="post" id="form">
+		                        <span class="heading">密码找回</span>
+		                        <table class="table">
+								<tbody>
+									<tr>
+										<td>问&nbsp;&nbsp;&nbsp;&nbsp;题: <b th:text="${session.user.question}"></b></td>
+									<tr>
+										<td>答&nbsp;&nbsp;&nbsp;&nbsp;案: 
+										<input type="text" id="answer"name="answer">
+										</td>
+									</tr>
+									<tr>
+										<td>密&nbsp;&nbsp;&nbsp;&nbsp;码: 
+										<input type="password" id="password"name="password">
+										</td>
+									</tr>
+						   <div   th:if="${message}">
+				         	<span id='hide' style="padding-top: 5px">
+                             <span  style="color: #a94442" th:text="${message}"></span>
+                          </span>
+			            </div>
+								</tbody>
+							</table>
+		                        
+		                            <button type="submit" class="btn btn-default">重置密码</button>
+		          
+		                    </form>
+		                </div>
+		            </div>
+		        </div>
+		</div>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#form').formValidation({
+		        message: '此值无效',
+		        fields: {
+		            password: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '密码不能为空'
+		                    },
+		                    stringLength: {
+		                        min:6,
+		                        max: 18,
+		                        message: '请输入6--18位密码'
+		                    }
+		                }
+		            }
+		        }
+		    });
+		});
+	</script>
+</body>
+</html>

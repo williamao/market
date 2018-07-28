@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body >
+   <div th:fragment="header">
+	<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/">欢迎</a>
+		</div>
+		<div>
+			<p class="navbar-text navbar-left">校园二手交易平台</p>
+
+			<div>
+				<ul class="nav navbar-nav navbar-right">
+	
+					<li  th:if="${session.user}"> 
+					      <a  href="/home" ><span  th:text="${session.user.username}" class="glyphicon glyphicon-user">
+					             </span ></a></li>
+				  <li  th:if="${session.user}"> 
+					     <a  href="/SellRegister" ><span class="glyphicon glyphicon-user">
+					             </span >发布商品</a></li>
+					 <li th:if="${session.user}">
+					       <a href="/logout"><span   class="glyphicon glyphicon-log-in">
+					       				</span> 注销</a></li>
+			
+					<li th:unless="${session.user}">
+					        <a href="/registerFrom"><span  class="glyphicon glyphicon-user">
+					        				</span> 注册</a></li>
+					 <li th:unless="${session.user}">
+					        <a href="/login"><span  class="glyphicon glyphicon-user">
+					        </span> 发布商品</a></li>
+					<li  th:unless="${session.user}">
+					<a href="/login"><span  class="glyphicon glyphicon-log-in">
+										</span> 登录</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</nav>
+	<form action="/search" role="search" >
+		<div class="search-header">
+			<div class="search-header-w">
+				<div class="search-form">
+					<input class="search-input"  type="text"  name="name"
+            		placeholder="在此输入想搜索的物品" id="name">
+					<button class="search-btn" id="search-btn">搜索</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+</body>
+</html>
